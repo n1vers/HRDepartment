@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface AppService<T> {
     boolean add();
-    boolean print();
+    boolean print(List<T> entities);
     boolean search();
     boolean edit();
-    List<T> list();
+
 }

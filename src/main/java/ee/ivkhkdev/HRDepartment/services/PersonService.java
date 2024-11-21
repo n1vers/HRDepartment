@@ -2,9 +2,10 @@ package ee.ivkhkdev.HRDepartment.services;
 
 import ee.ivkhkdev.HRDepartment.interfaces.AppService;
 import ee.ivkhkdev.HRDepartment.model.Person;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class PersonService implements AppService<Person> {
 
     @Override
@@ -13,7 +14,7 @@ public class PersonService implements AppService<Person> {
     }
 
     @Override
-    public boolean print() {
+    public boolean print(List<Person> entities) {
         return false;
     }
 
@@ -27,8 +28,5 @@ public class PersonService implements AppService<Person> {
         return false;
     }
 
-    @Override
-    public List<Person> list() {
-        return List.of();
-    }
+
 }

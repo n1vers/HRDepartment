@@ -9,15 +9,15 @@ public class Employee {
     private UUID id;
     private String position;
     private int salary ;
-    private Date[] startDates;
-    private Date[] endDates;
+    private String[] startDates;
+    private String[] endDates;
     private Person person;
 
     public Employee() {
         this.id = UUID.randomUUID();
     }
 
-    public Employee( String position, int salary, Date[] startDates, Date[] endDates, Person person) {
+    public Employee( String position, int salary, String[] startDates, String[] endDates, Person person) {
         this.position = position;
         this.salary = salary;
         this.startDates = startDates;
@@ -49,19 +49,19 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Date[] getStartDates() {
+    public String[] getStartDates() {
         return startDates;
     }
 
-    public void setStartDates(Date[] startDates) {
+    public void setStartDates(String[] startDates) {
         this.startDates = startDates;
     }
 
-    public Date[] getEndDates() {
+    public String[] getEndDates() {
         return endDates;
     }
 
-    public void setEndDates(Date[] endDates) {
+    public void setEndDates(String[] endDates) {
         this.endDates = endDates;
     }
 

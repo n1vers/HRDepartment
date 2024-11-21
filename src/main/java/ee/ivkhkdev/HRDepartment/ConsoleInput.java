@@ -1,16 +1,14 @@
-package ee.ivkhkdev.HRDepartment.input;
+package ee.ivkhkdev.HRDepartment;
 
 import ee.ivkhkdev.HRDepartment.interfaces.Input;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class ConsoleInput implements Input {
-    private Scanner scanner;
-
-    public ConsoleInput(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
+    Scanner scanner = new Scanner(System.in);
     @Override
     public String nextLine(){
         return scanner.nextLine();

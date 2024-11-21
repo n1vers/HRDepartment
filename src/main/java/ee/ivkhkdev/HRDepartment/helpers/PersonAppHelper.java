@@ -4,15 +4,14 @@ import ee.ivkhkdev.HRDepartment.interfaces.AppHelper;
 import ee.ivkhkdev.HRDepartment.interfaces.Input;
 import ee.ivkhkdev.HRDepartment.model.Address;
 import ee.ivkhkdev.HRDepartment.model.Person;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-public class AppHelperPerson implements AppHelper<Person> {
-    private final Input input;
+public class PersonAppHelper implements AppHelper<Person> {
 
-    public AppHelperPerson(Input input) {
-        this.input = input;
-    }
+   private Input input;
 
     @Override
     public Person create() {
@@ -35,8 +34,6 @@ public class AppHelperPerson implements AppHelper<Person> {
         System.out.println("Номер банковского счета:");
         person.setBank(input.nextLine());
 
-
-
         return person;
     }catch (Exception e){
         return null;
@@ -44,7 +41,7 @@ public class AppHelperPerson implements AppHelper<Person> {
 }
 
     @Override
-    public boolean print(List<Person> people) {
+    public boolean printList(List<Person> people) {
         try {
             // Check if the list is empty
             if (people.size() == 0) return false;
@@ -78,7 +75,7 @@ public class AppHelperPerson implements AppHelper<Person> {
     }
 
     @Override
-    public List<Person> edit(List<Person> listClass) {
+    public List<Person> update(List<Person> entities) {
         return List.of();
     }
 

@@ -12,19 +12,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class App implements CommandLineRunner {
-	private Input input;
-	private AppService<Employee> employeeAppService;
-	private AppService<Person> personAppService;
-	private AppService<Address> addressAppService;
-
 	@Autowired
-	public App(Input input,AppService<Employee> employeeAppService,AppService<Person> personAppService,AppService<Address> addressAppService){
-		this.input = input;
-		this.employeeAppService = employeeAppService;
-		this.personAppService = personAppService;
-		this.addressAppService = addressAppService;
-
-	}
+	private Input input;
+	@Autowired
+	private AppService<Employee> employeeAppService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
@@ -55,11 +46,11 @@ public class App implements CommandLineRunner {
 						}else {
 							System.out.println("Работник не удалось добавить");
 						}
-				case 2:
-					if (employeeAppService.print()){
-						System.out.println("----------- Конец списка -----------");
-					}
-					break;
+//				case 2:
+//					if (employeeAppService.print()){
+//						System.out.println("----------- Конец списка -----------");
+//					}
+//					break;
 				case 3:
 					System.out.println("Изменение работника");
 					if(employeeAppService.edit()){

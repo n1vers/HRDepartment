@@ -2,9 +2,10 @@ package ee.ivkhkdev.HRDepartment.services;
 
 import ee.ivkhkdev.HRDepartment.interfaces.AppService;
 import ee.ivkhkdev.HRDepartment.model.Address;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class AddressService implements AppService<Address> {
 
     @Override
@@ -13,7 +14,7 @@ public class AddressService implements AppService<Address> {
     }
 
     @Override
-    public boolean print() {
+    public boolean print(List<Address> entities) {
         return false;
     }
 
@@ -27,8 +28,4 @@ public class AddressService implements AppService<Address> {
         return false;
     }
 
-    @Override
-    public List<Address> list() {
-        return List.of();
-    }
 }
