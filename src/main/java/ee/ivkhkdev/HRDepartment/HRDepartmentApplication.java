@@ -1,24 +1,22 @@
 package ee.ivkhkdev.HRDepartment;
 
-import ee.ivkhkdev.HRDepartment.interfaces.AppService;
-import ee.ivkhkdev.HRDepartment.interfaces.Input;
-import ee.ivkhkdev.HRDepartment.model.Address;
-import ee.ivkhkdev.HRDepartment.model.Employee;
-import ee.ivkhkdev.HRDepartment.model.Person;
+import ee.ivkhkdev.HRDepartment.services.AppService;
+import ee.ivkhkdev.HRDepartment.input.Input;
+import ee.ivkhkdev.HRDepartment.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class App implements CommandLineRunner {
+public class HRDepartmentApplication implements CommandLineRunner {
 	@Autowired
 	private Input input;
 	@Autowired
 	private AppService<Employee> employeeAppService;
 
 	public static void main(String[] args) {
-		SpringApplication.run(App.class, args);
+		SpringApplication.run(HRDepartmentApplication.class, args);
 	}
 
 	@Override
@@ -46,11 +44,13 @@ public class App implements CommandLineRunner {
 						}else {
 							System.out.println("Работник не удалось добавить");
 						}
-//				case 2:
-//					if (employeeAppService.print()){
-//						System.out.println("----------- Конец списка -----------");
-//					}
-//					break;
+				case 2:
+					if(employeeAppService.print()){
+						System.out.println("Список");
+					}else{
+						System.out.println("Списка нет");
+					}
+					break;
 				case 3:
 					System.out.println("Изменение работника");
 					if(employeeAppService.edit()){

@@ -1,42 +1,46 @@
 package ee.ivkhkdev.HRDepartment.services;
 
-import ee.ivkhkdev.HRDepartment.helpers.EmployeeAppHelper;
-import ee.ivkhkdev.HRDepartment.interfaces.AppHelper;
-import ee.ivkhkdev.HRDepartment.interfaces.AppRepository;
-import ee.ivkhkdev.HRDepartment.interfaces.AppService;
-import ee.ivkhkdev.HRDepartment.model.Employee;
+
+import ee.ivkhkdev.HRDepartment.helpers.Helper;
+import ee.ivkhkdev.HRDepartment.repositories.EmployeeRepository;
+import ee.ivkhkdev.HRDepartment.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class EmployeeService implements AppService<Employee> {
-
-    private final AppHelper<Employee> employeeAppHelper;
-    private final AppRepository<Employee> repository;
-
     @Autowired
-    public EmployeeService(EmployeeAppHelper employeeAppHelper, AppRepository<Employee> repository) {
-        this.employeeAppHelper=employeeAppHelper;
-        this.repository=repository;
-    }
+    private Helper<Employee> employeeHelper;
+    @Autowired
+    private  EmployeeRepository employeeRepository;
 
     @Override
     public boolean add() {
-        Employee employee = employeeAppHelper.create();
-        if(employee==null) return false;
         try {
-            repository.save(employee);
-            return true;
-        }catch(Exception e) {
-            return false;
+            Optional<Employee> employee = employeeHelper.create();
+            if(employee.isPresent()){
+                employeeRepository.save(employee.get());
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
+            return false;
     }
 
     @Override
-    public boolean print(List<Employee> entities) {
-        return employeeAppHelper.printList(entities);
+    public List<Employee> list() {
+        return List.of();
     }
+
+    @Override
+    public boolean print() {
+        return employeeHelper.printList(employeeRepository.findAll());
+    }
+
     @Override
     public boolean search() {
         return false;

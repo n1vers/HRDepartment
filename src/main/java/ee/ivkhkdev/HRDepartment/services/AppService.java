@@ -1,10 +1,11 @@
-package ee.ivkhkdev.HRDepartment.interfaces;
+package ee.ivkhkdev.HRDepartment.services;
 
 import java.util.List;
 
 public interface AppService<T> {
     boolean add();
-    boolean print(List<T> entities);
+    List<T> list();
+    boolean print();
     boolean search();
     boolean edit();
 
