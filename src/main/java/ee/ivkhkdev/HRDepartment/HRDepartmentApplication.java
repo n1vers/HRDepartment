@@ -1,5 +1,6 @@
 package ee.ivkhkdev.HRDepartment;
 
+import ee.ivkhkdev.HRDepartment.entity.User;
 import ee.ivkhkdev.HRDepartment.services.AppService;
 import ee.ivkhkdev.HRDepartment.input.Input;
 import ee.ivkhkdev.HRDepartment.entity.Employee;
@@ -14,6 +15,8 @@ public class HRDepartmentApplication implements CommandLineRunner {
 	private Input input;
 	@Autowired
 	private AppService<Employee> employeeAppService;
+	@Autowired
+	private AppService<User> userAppService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(HRDepartmentApplication.class, args);
@@ -26,7 +29,7 @@ public class HRDepartmentApplication implements CommandLineRunner {
 		do {
 			System.out.println("Список задач:");
 			System.out.println("0.выйти из программы");
-			System.out.println("1.Добавить работника");
+			System.out.println("1.Добавить пользователя");
 			System.out.println("2.список работников");
 			System.out.println("3.изменить работника");
 			System.out.println("4.найти работников по дате рождения");
@@ -38,12 +41,12 @@ public class HRDepartmentApplication implements CommandLineRunner {
 					repeat=false;
 					break;
 				case 1:
-					System.out.println("1.Добавить работника");
-						if (employeeAppService.add()){
-							System.out.println("Работник добавлена");
-						}else {
-							System.out.println("Работник не удалось добавить");
-						}
+					if (userAppService.add()){
+						System.out.println("Пользователь добавлен");
+					}else {
+						System.out.println("Пользователя не удалось добавить");
+					}
+					break;
 				case 2:
 					if(employeeAppService.print()){
 						System.out.println("Список");
